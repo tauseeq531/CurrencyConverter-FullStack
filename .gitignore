@@ -1,0 +1,34 @@
+# === Angular ===
+node_modules/
+dist/
+.angular/
+coverage/
+tmp/
+*.log
+.env
+.env.*
+
+# === .NET ===
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.db
+*.sqlite
+*.swp
+*.bak
+.vs/
+.vscode/
+TestResults/
+*.trx
+*.coverage
+launchSettings.json
+
+# === OS / Editor ===
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.orig
+*.tmp

@@ -1,0 +1,43 @@
+<div class="converter-container">
+  <h2 class="converter-title">Currency Converter</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="converter-form">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount" required />
+    </mat-form-field>
+
+    <div class="currency-grid">
+      <mat-form-field appearance="fill">
+        <mat-label>From</mat-label>
+        <mat-select formControlName="fromCurrency" required>
+          <mat-option *ngFor="let c of currencies()" [value]="c">{{ c }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>To</mat-label>
+        <mat-select formControlName="toCurrency" required>
+          <mat-option *ngFor="let c of currencies()" [value]="c">{{ c }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" class="convert-btn"
+            [disabled]="form.invalid || loading()">
+      Convert
+    </button>
+
+    <div *ngIf="loading()" class="loading-box">
+      <mat-spinner diameter="24"></mat-spinner>
+      <span>Converting...</span>
+    </div>
+
+    <div *ngIf="result()" class="result-box">
+      <div><b>Rate:</b> {{ result()?.rate }}</div>
+      <div><b>Converted:</b> {{ result()?.convertedAmount }}</div>
+      <div><b>Time:</b> {{ result()?.timeUtc | date:'yyyy-MM-dd HH:mm:ss' : 'UTC' }}</div>
+    </div>
+  </form>
+</div>

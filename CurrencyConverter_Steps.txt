@@ -1,0 +1,73 @@
+#Currency Converter – Full Stack Setup Guide
+
+This guide covers setup and build instructions for both Frontend (Angular) and Backend (ASP.NET Core Web API parts of the Currency Converter project.
+
+#Backend Setup – ASP.NET Core API
+CurrencyConverter.Api
+
+Prerequisites
+Tool Version
+.NET SDK 8.0+ 
+SQL Server LocalDB or SQL Express any 
+Visual Studio + VS Code latest 
+
+#Steps
+1. Open the backend folder in Visual Studio
+2. Restore NuGet dependencies:
+   dotnet restore
+3. Apply migrations if using EF Core:
+   dotnet ef database update
+4. Run the API locally:
+   dotnet run
+
+
+#Default URL
+https://localhost:5001/api
+
+**Make sure this matches the frontend’s API base URL (in `api.service.ts`).**
+
+#CORS Configuration
+Ensure the following is present in `Program.cs`:
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+app.UseCors("AllowAngularApp");
+
+#Frontend Setup – Angular App
+currency-converter-frontend
+
+#Prerequisites
+Tool Version 
+Node.js 18+ 
+npm 9+ 
+Angular CLI 17+
+
+#Steps
+1. Open the frontend folder in a terminal:
+   cd currency-converter-frontend
+2. Install dependencies:
+   npm install
+3. Start the development server:
+   ng serve
+4. Open your browser at:
+   http://localhost:4200
+
+
+#Notes
+- The frontend communicates with the backend at `https://localhost:5001/api` by default.
+- Both Tailwind CSS and Angular Material (purple-green theme) are configured.
+- If you face `CORS` errors, recheck backend configuration.
+
+---
+
+#Author
+*Currency Converter Project*
+Built with Angular, Tailwind CSS, and ASP.NET Core.

@@ -1,0 +1,21 @@
+### Convert amount
+POST https://localhost:5001/api/conversion
+Content-Type: application/json
+
+{
+  "amount": 100,
+  "fromCurrency": "USD",
+  "toCurrency": "EUR"
+}
+
+### Recent conversion history
+GET https://localhost:5001/api/conversion/history
+Accept: application/json
+
+### Known currencies
+GET https://localhost:5001/api/currencies
+Accept: application/json
+
+### Latest rates for base currency
+GET https://localhost:5001/api/rates/USD
+Accept: application/json
